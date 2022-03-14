@@ -9,6 +9,8 @@ module.exports = {
   Mutation: {
     signup: async (_, { email, name, mobileNumber, password, country }) => {
       const hashedPassword = await Auth.hashPassword(password);
+      const checkExist = await User.findOne(email);
+      if(checkExist) throw new Error('Email already exist');
       const user = new User({ email, name,mobileNumber, country, password: hashedPassword })
       await user.save()
       return 'new user successfully created'
