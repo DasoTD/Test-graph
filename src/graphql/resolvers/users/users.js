@@ -16,7 +16,7 @@ module.exports = {
 
     login: async (_, { email, password }) => {
       if (!password && !email) throw new Error('email or password required');
-      const user = await User.findOne(userPemailayload)
+      const user = await User.findOne(email)
       if (!user) throw new Error('Unknown user', userPayload)
 
       const correctPassword = await Auth.matchPasswords(password, user.password)

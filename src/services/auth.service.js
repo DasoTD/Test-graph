@@ -20,7 +20,7 @@ class Auth {
     return bcrypt.compare(password, userPassword)
   }
 
-  static generateJwt({ email, userId }) {
+  static generateJwt({ userId, email }) {
     return jwt.sign(
       { userId, email },
       process.env.TOKEN_SECRET,
